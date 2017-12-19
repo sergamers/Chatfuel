@@ -8,11 +8,19 @@
   &-item{
     display: flex;
     align-items: center;
+
+    &--navBar{
+      justify-content: center;
+
+      .btn{
+        margin: 0 5px;
+      }
+    }
   }
     &-content{
       flex-grow: 1;
     }
     &-btn{
-      padding-left: 5px;
+      margin-left: 5px;
     }
 }

@@ -29,5 +29,21 @@
         </button>
       </div>
     </li>
+
+    <li class="collection-item collection-item--navBar">
+      <button
+        class="btn blue waves-effect waves-light"
+        [disabled]="prev === undefined"
+        routerLink="/user" [queryParams]="{page: prev}">
+        <i class="material-icons">arrow_back</i>
+      </button>
+
+      <button
+        class="btn blue waves-effect waves-light"
+        [disabled]="next === undefined"
+        routerLink="/user" [queryParams]="{page: next}">
+        <i class="material-icons">arrow_forward</i>
+      </button>
+    </li>
   </ul>
 </div>

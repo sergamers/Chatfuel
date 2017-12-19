@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IUserListResponse, IUser } from '@app/user-module/user.interfaces';
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class UserService {
@@ -12,7 +12,7 @@ export class UserService {
    *
    * @param  {type} page Номер страницы
    */
-  public getUserList(page: number = 0): IUserListResponse{
+  public getUserList(page: number = 0): Observable<IUserListResponse> {
     return this.generateCustomRequestListUser(page);
   }
 
@@ -21,7 +21,7 @@ export class UserService {
    *
    * @param  {type} page Номер страницы
    */
-  private generateCustomRequestListUser(page: number): IUserListResponse {
+  private generateCustomRequestListUser(page: number): Observable<IUserListResponse> {
     let max = 10;
 
     let result: IUser[] = UserList.slice(max * page, max * page + max);

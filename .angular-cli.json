@@ -22,7 +22,9 @@
         "styles.scss",
         "../node_modules/materialize-css/dist/css/materialize.min.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/materialize-css/js/waves.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
