@@ -27,6 +27,31 @@ export class UserService {
     return this.customAutocompliteSearh(query);
   }
 
+
+
+  /**
+   * Сохраняем новые данные пользователя     
+   */
+  public updateUser(user: IUser): Observable<IUser> {
+    let param = {
+      name: user.name,
+      avatarUrl: user.avatarUrl,
+    };
+
+    // в реале здесь должен быть this.http.post(API, param)
+    return this.customSetUser(user.id, param);
+  }
+
+  /**
+   * public getUser - Получаем клиента по ID
+   *
+   * @param  {type} id
+   */
+  public getUser(id: string): Observable<IUser> {
+    // в реале здесь должен быть this.http.get(API)
+    return this.customUserId(id).map((users: IUser[]) => users.length ? users[0] : undefined);
+  }
+
   /**
    * private generateCustomRequestListUser - Кастомная генерация бэк ответа
    *
@@ -68,12 +93,54 @@ export class UserService {
       observer.next(response);
     });
   }
+
+  /**
+   * private customUserId - Получаем контакт по ID
+   *
+   * @param  {type} Id
+   */
+  private customUserId(Id: string): Observable<IUser[]>  {
+    var response: IUser[] = UserList.filter(( user ) => {
+      return user.id == Id;
+    });
+
+    // имитация ответа angular на запрос http.get
+    return Observable.create(( observer ) => {
+      observer.next(response);
+    });
+  }
+
+
+  /**
+   * Реализация бэка - Сохраняем новые данные пользователя
+   */
+  private customSetUser(id, param): Observable<IUser> {
+    let response: IUser;
+
+    for (let i = 0; i < UserList.length; i++) {
+      if(UserList[i].id == id){
+        UserList[i] = {
+          ...UserList[i],
+          ...param
+        };
+
+        response = UserList[i];
+
+        break;
+      }
+    }
+
+    // имитация ответа angular на запрос http.get
+    return Observable.create(( observer ) => {
+      observer.next(response);
+    });
+  }
 }
 
 /**
  *  Список всех пользователей
  */
-const UserList: IUser[] = [
+let UserList: IUser[] = [
   {
     avatarUrl: "avatar_3.svg",
     name: "Rhodes Rasmussen",

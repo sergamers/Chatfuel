@@ -4,12 +4,18 @@
       <h4>Редактировать</h4>
     </li>
 
-    <li class="collection-item">
+    <form #userForm="ngForm" class="collection-item" (ngSubmit)="onSubmit(userForm)">
       <div class="collection-content">
         <div class="input-field">
-          <input id="icon_prefix" type="text" (focus)="isActiveInput=true" (blur)="isActiveInput=false">
+          <input
+            id="icon_prefix" name="fio" type="text"
+            [(ngModel)]="user.name"
+            (focus)="isActiveInput=true"
+            [ngClass]="{'invalid': userForm.submitted && !userForm.valid}"
+            required
+            (blur)="!user.name.length && isActiveInput=false">
 
-          <label for="icon_prefix" [ngClass]="{'active': isActiveInput}">First Name</label>
+          <label for="icon_prefix" [ngClass]="{'active': isActiveInput}">ФИО</label>
         </div>
       </div>
 
@@ -19,11 +25,11 @@
             <i class="material-icons">backup</i>
           </button>
 
-          <button class="btn red accent-2 waves-effect waves-light" type="submit" name="action" routerLink="/user">
+          <button class="btn red accent-2 waves-effect waves-light" name="action" routerLink="/user">
             <i class="material-icons">arrow_back</i>
           </button>
         </div>
       </div>
-    </li>
+    </form>
   </ul>
 </div>
