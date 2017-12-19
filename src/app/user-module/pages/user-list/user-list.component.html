@@ -15,16 +15,16 @@
 <div class="card-content">
   <ul class="collection with-header">
     <li class="collection-header">
-      <h4>First Names</h4>
+      <h4>Контакты</h4>
     </li>
 
-    <li class="collection-item avatar" *ngFor="let item of items; index as i">
-      <div class="circle" [inlineSVG]="item"></div>
+    <li class="collection-item avatar" *ngFor="let user of userList; index as i">
+      <div class="circle" [inlineSVG]="user.avatarUrl"></div>
 
-      <div class="collection-content">Омельницкий Сергей Игоревич</div>
+      <div class="collection-content"> {{ user.name }} </div>
 
       <div class="collection-btn">
-        <button class="btn waves-effect waves-light" type="submit" name="action" routerLink="/user/{{i+1}}">
+        <button class="btn waves-effect waves-light" type="submit" name="action" routerLink="/user/{{user.id}}">
           <i class="material-icons">border_color</i>
         </button>
       </div>

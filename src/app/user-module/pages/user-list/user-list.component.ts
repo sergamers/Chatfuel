@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { IUserListResponse, IUser } from '@app/user-module/user.interfaces';
+import { UserService } from '@app/user-module/services/user.service';
 
 @Component({
   selector: 'app-user-list',
@@ -6,11 +9,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit {
-  public items: any = ['avatar_1.svg', 'avatar_2.svg', 'avatar_3.svg', 'avatar_4.svg', 'avatar_5.svg'];
+  public userList: IUser[] = [];
 
-  constructor() { }
+  constructor(
+    private userService: UserService,
+    private route: ActivatedRoute,
+  ) { }
 
   ngOnInit() {
+    // Слушаем изменения дополнительных параметров
+    this.route.queryParams.subscribe(({page}) => {
+      this.userService.getUserList(page).subscribe(this.prepareUserList.bind(this));
+    });
   }
 
+
+  /**
+   * private prepareUserList - Заполняем данными наш компонент
+   */
+  private prepareUserList(response: IUserListResponse): void {
+    this.userList = response.result;
+  }
 }
