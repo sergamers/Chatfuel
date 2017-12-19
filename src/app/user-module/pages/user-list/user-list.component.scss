@@ -1,0 +1,18 @@
+.card{
+  &-content{
+    padding-top: 0;
+  }
+}
+
+.collection{
+  &-item{
+    display: flex;
+    align-items: center;
+  }
+    &-content{
+      flex-grow: 1;
+    }
+    &-btn{
+      padding-left: 5px;
+    }
+}

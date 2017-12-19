@@ -1,3 +1,33 @@
-<p>
-  user-list works!
-</p>
+<div class="row">
+  <div class="col s12">
+    <div class="input-field">
+      <label class="prefix">
+        <i class="material-icons prefix" [ngClass]="{'active': isActiveInput}">find_in_page</i>
+      </label>
+
+      <input id="icon_prefix" type="text" (focus)="isActiveInput=true" (blur)="isActiveInput=false">
+
+      <label for="icon_prefix" [ngClass]="{'active': isActiveInput}">First Name</label>
+    </div>
+  </div>
+</div>
+
+<div class="card-content">
+  <ul class="collection with-header">
+    <li class="collection-header">
+      <h4>First Names</h4>
+    </li>
+
+    <li class="collection-item avatar" *ngFor="let item of items; index as i">
+      <div class="circle" [inlineSVG]="item"></div>
+
+      <div class="collection-content">Омельницкий Сергей Игоревич</div>
+
+      <div class="collection-btn">
+        <button class="btn waves-effect waves-light" type="submit" name="action" routerLink="/user/{{i+1}}">
+          <i class="material-icons">border_color</i>
+        </button>
+      </div>
+    </li>
+  </ul>
+</div>
