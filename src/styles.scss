@@ -1,10 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 html{
-  height: 100vh;
+  min-height: 100vh;
 }
 
 body{
-  background: #E7EBF0;
+  background: #025092 url('/assets/images/fon.jpg') no-repeat center center;
+  background-size: cover;
 }
 
 [hidden], template{

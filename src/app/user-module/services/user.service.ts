@@ -13,7 +13,18 @@ export class UserService {
    * @param  {type} page Номер страницы
    */
   public getUserList(page: number = 0): Observable<IUserListResponse> {
+    // в реале здесь должен быть this.http.get(API)
     return this.generateCustomRequestListUser(page);
+  }
+
+  /**
+   * public autocompliteUser - Поиск клиента по имени
+   *
+   * @param  {type} query Поисковая строка
+   */
+  public autocompliteUser(query: string): Observable<IUser[]>{
+    // в реале здесь должен быть this.http.get(API)
+    return this.customAutocompliteSearh(query);
   }
 
   /**
@@ -41,8 +52,23 @@ export class UserService {
       observer.next(response);
     });
   }
-}
 
+  /**
+   * private customAutocompliteSearh - Кастомная реализация запроса на бэк на автокомплит
+   *
+   * @param  {type} query Поисковая строка
+   */
+  private customAutocompliteSearh(query: string): Observable<IUser[]> {
+    var response: IUser[] = UserList.filter(( user ) => {
+      return user.name.toLocaleLowerCase().indexOf(query.toLocaleLowerCase()) !== -1;
+    });
+
+    // имитация ответа angular на запрос http.get
+    return Observable.create(( observer ) => {
+      observer.next(response);
+    });
+  }
+}
 
 /**
  *  Список всех пользователей

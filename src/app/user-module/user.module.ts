@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { UserModuleRoutes } from '@app/user-module/routes';
 import { EntryComponent } from '@app/user-module/pages/entry/entry.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule }   from '@angular/forms';
 
 import { InlineSVGModule } from 'ng-inline-svg';
 
@@ -17,6 +18,7 @@ import { UserViewComponent } from '@app/user-module/pages/user-view/user-view.co
     UserModuleRoutes,
     HttpClientModule,
     InlineSVGModule.forRoot({ baseUrl: '/assets/svg/' }),
+    FormsModule,
   ],
   declarations: [
     EntryComponent,

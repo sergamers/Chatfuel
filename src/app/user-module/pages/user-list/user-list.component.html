@@ -5,9 +5,21 @@
         <i class="material-icons prefix" [ngClass]="{'active': isActiveInput}">find_in_page</i>
       </label>
 
-      <input id="icon_prefix" type="text" (focus)="isActiveInput=true" (blur)="isActiveInput=false">
+      <input
+        #search
+        id="icon_prefix"
+        type="text"
+        (keyup)="searchKeyUp.next(search.value)"
+        (focus)="isActiveInput=true"
+        (blur)="!search.value && isActiveInput=false">
 
-      <label for="icon_prefix" [ngClass]="{'active': isActiveInput}">First Name</label>
+      <label for="icon_prefix" [ngClass]="{'active': isActiveInput}">Кол-во символов для начала поиска: {{ activateSearchLength }}</label>
+    </div>
+
+    <div class="input-loader">
+      <div class="progress blue" [hidden]="!isSearch">
+        <div class="indeterminate light-blue lighten-2"></div>
+      </div>
     </div>
   </div>
 </div>
@@ -18,6 +30,7 @@
       <h4>Контакты</h4>
     </li>
 
+    <!-- список -->
     <li class="collection-item avatar" *ngFor="let user of userList; index as i">
       <div class="circle" [inlineSVG]="user.avatarUrl"></div>
 
@@ -30,17 +43,22 @@
       </div>
     </li>
 
+    <li class="collection-item" [hidden]="userList.length">
+      Контакты не найдены!
+    </li>
+
+    <!-- навигация -->
     <li class="collection-item collection-item--navBar">
       <button
         class="btn blue waves-effect waves-light"
-        [disabled]="prev === undefined"
+        [disabled]="prev === undefined || search.value.length >= activateSearchLength"
         routerLink="/user" [queryParams]="{page: prev}">
         <i class="material-icons">arrow_back</i>
       </button>
 
       <button
         class="btn blue waves-effect waves-light"
-        [disabled]="next === undefined"
+        [disabled]="next === undefined || search.value.length >= activateSearchLength"
         routerLink="/user" [queryParams]="{page: next}">
         <i class="material-icons">arrow_forward</i>
       </button>
