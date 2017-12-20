@@ -13,7 +13,7 @@
         (focus)="isActiveInput=true"
         (blur)="!search.value && isActiveInput=false">
 
-      <label for="icon_prefix" [ngClass]="{'active': isActiveInput}">Кол-во символов для начала поиска: {{ activateSearchLength }}</label>
+      <label for="icon_prefix" [ngClass]="{'active': isActiveInput}">Мин. кол-во символов: {{ activateSearchLength }}</label>
     </div>
 
     <div class="input-loader">

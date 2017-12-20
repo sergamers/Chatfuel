@@ -2,6 +2,24 @@
   &-title{
     width: 100%;
     text-align: center;
-    text-transform: uppercase;
+  }
+
+  &-edit{
+    margin-left: 10px;
+    display: inline-block;
+  }
+}
+
+.white-text{
+  border-bottom-color: #fff !important;
+}
+
+.input-field{
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, .25);
+
+  button{
+    margin-left: 5px;
   }
 }

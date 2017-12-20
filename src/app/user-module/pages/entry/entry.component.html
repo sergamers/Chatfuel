@@ -4,7 +4,29 @@
       <div class="card-image">
         <img src="/assets/images/bg.png" alt="">
 
-        <span class="card-title">Card Title</span>
+        <span class="card-title">
+          <div [hidden]="isEdit">
+            {{ botName }}
+
+            <div class="card-edit">
+              <button (click)="openEditBotName()" class="waves-effect waves-light btn btn-floating light-blue lighten-2">
+                <i class="material-icons">create</i>
+              </button>
+            </div>
+          </div>
+
+          <div class="input-field col s6 offset-s3" [hidden]="!isEdit">
+            <input placeholder="Название" type="text" class="validate white-text" [(ngModel)]="editBotName">
+
+            <button (click)="updateBotName()" class="waves-effect waves-light btn">
+              <i class="material-icons">backup</i>
+            </button>
+
+            <button (click)="isEdit = false;" class="waves-effect waves-light red accent-2 btn">
+              <i class="material-icons">arrow_back</i>
+            </button>
+          </div>
+        </span>
       </div>
 
       <div>

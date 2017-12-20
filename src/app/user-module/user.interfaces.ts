@@ -8,10 +8,6 @@ export interface IUser {
   avatarUrl: string
 }
 
-export interface IUserView{
-  result: IUser
-}
-
 /**
  * Ответ с бэка на получение списка контактов
  */

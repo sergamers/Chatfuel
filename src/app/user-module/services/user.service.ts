@@ -28,9 +28,13 @@ export class UserService {
   }
 
 
+  /**
+   * Строка с названием бота
+   */
+  public botName: string = 'R2D2 BoT';
 
   /**
-   * Сохраняем новые данные пользователя     
+   * Сохраняем новые данные пользователя
    */
   public updateUser(user: IUser): Observable<IUser> {
     let param = {
@@ -49,7 +53,7 @@ export class UserService {
    */
   public getUser(id: string): Observable<IUser> {
     // в реале здесь должен быть this.http.get(API)
-    return this.customUserId(id).map((users: IUser[]) => users.length ? users[0] : undefined);
+    return this.customUserId(id).map((users: IUser[]) => users.length ? JSON.parse(JSON.stringify(users[0])): undefined);
   }
 
   /**
